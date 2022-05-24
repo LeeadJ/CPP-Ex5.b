@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/mnt/c/Users/Leead/Desktop/CPP-Projects/CPP-Ex5.b'
 clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile TestRunner.cpp -o TestRunner.o
 curl https://raw.githubusercontent.com/renanarimon/cpp_5b_test/master/Test.cpp > StudentTest1.cpp
@@ -7,6 +7,7 @@ curl https://raw.githubusercontent.com/ShauliTaragin/Orgchart-A/main/Test.cpp > 
 clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile StudentTest2.cpp -o StudentTest2.o
 curl https://raw.githubusercontent.com/dvirGev/CPP--Ex5-par1/main/Test.cpp > StudentTest3.cpp
 clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile StudentTest3.cpp -o StudentTest3.o
-clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources TestRunner.o StudentTest1.o StudentTest2.o StudentTest3.o -o test
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile sources/Node.cpp -o objects/Node.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources TestRunner.o StudentTest1.o StudentTest2.o StudentTest3.o objects/Node.o -o test
 make: Leaving directory '/mnt/c/Users/Leead/Desktop/CPP-Projects/CPP-Ex5.b'
  
