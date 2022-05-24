@@ -13,13 +13,16 @@ namespace ariel{
 
             class Iterator{
                 private:
-                    Node* _currPtr;
+                    Node* _currNodePtr;
+                    std::vector<Node*> _iterNodesVec;/////
                 public:
                     //Iterator Getters:
-                    Node* getCurrPtr() const;
+                    Node* getCurrNodePtr() const;
+                    std::vector<Node*> getIterNodeVec() const;/////
 
                     //Iterator Constructor:
                     Iterator();
+                    Iterator(Node* node, const int type); // 0=level(==BFS), 1=reverse(==reverse-BFS), 2=pre(==DFS)
                     //Iterator Functions:
                     
                     //Iterator Operators:
@@ -28,19 +31,25 @@ namespace ariel{
                     bool operator == (const Iterator& other) const;
                     bool operator != (const Iterator& other) const;
                     Iterator& operator ++ ();
-                    Iterator operator ++ (int);
+                    Iterator& operator ++ (int);/////???
+                    //These functions will load the iteration vector in the appropriate fashion.
+                    void init_BFS(Node* node);
+                    void init_reBFS(Node* node);
+                    void init_DFS(Node* node);
+
             };
 
             //OrgChart Constructor:
             OrgChart();
-            OrgChart(const OrgChart& otherChart);
+            // OrgChart(const OrgChart& otherChart);
             
             //OrgChart Destructor:
             ~OrgChart();
 
             //OrgChart Functions:
-            void add_root(const std::string& root);
-            void add_sub(const std::string& parent, const std::string& child);
+            Node* find(const std::string& node) const;
+            OrgChart& add_root(const std::string& r);
+            OrgChart& add_sub(const std::string& parent, const std::string& child);
             Iterator begin() const;
             Iterator end() const;
             Iterator begin_level_order() const;
@@ -49,6 +58,7 @@ namespace ariel{
             Iterator reverse_order() const;
             Iterator begin_preorder() const;
             Iterator end_preorder() const;
+            
             
 
             //OrgChart Operators:
