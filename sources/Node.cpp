@@ -4,11 +4,11 @@ using namespace ariel;
 std::string Node::getData() const {return this->_data;}
 std::vector<Node*>& Node::getChildrenVec() {return this->_children;}
 
-//Setters:
-void Node::setData(const std::string& str) {this->_data=str;}
-
 //Constructor:
-Node::Node(const std::string& str) {this->setData(str);}
+Node::Node(const std::string& str) {this->_data = std::move(str);}
+
+//Destructor:
+Node::~Node(){}
 
 //Functions:
 void Node::printNode(){
