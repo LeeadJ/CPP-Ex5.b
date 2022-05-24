@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include<string>
 #include<vector>
@@ -5,19 +6,22 @@
 namespace ariel{
     class Node{
         private:
-            std::string* _dataPtr;
+            std::string _data;
             std::vector<Node*> _children;
         
         public:
             //Getters:
-            std::string* getDataPtr() const {return this->_dataPtr;}
-            std::vector<Node*>& getChildrenVec() {return this->_children;}
+            std::string getData() const;
+            std::vector<Node*>& getChildrenVec();
 
             //Setters:
-            void setData(const std::string& str) {*(this->_dataPtr)=str;}
+            void setData(const std::string& str);
 
             //Constructor:
-            Node(const std::string& str) {this->setData(str);}
+            Node(const std::string& str);
+
+            //Functions:
+            void printNode();
     };
 }
 
