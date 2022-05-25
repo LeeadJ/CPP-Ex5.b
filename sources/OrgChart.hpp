@@ -19,6 +19,8 @@ namespace ariel{
                     //Iterator Getters:
                     Node* getCurrNodePtr() const;
                     std::vector<Node*>& getIterNodeVec();
+                    //Iterator Setter:
+                    void setIterNodeVec(const std::vector<Node*>& other);
 
                     //Iterator Constructor:
                     Iterator();

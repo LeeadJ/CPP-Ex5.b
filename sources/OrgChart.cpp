@@ -11,6 +11,14 @@ Node* OrgChart::Iterator::getCurrNodePtr() const{return this->_currNodePtr;}
 
 std::vector<Node*>& OrgChart::Iterator::getIterNodeVec() {return this->_iterNodesVec;}
 
+//Iterator Setter:
+void OrgChart::Iterator::setIterNodeVec(const std::vector<Node*>& other){
+    std::vector<Node*> newVec;
+    for(Node* node : other){
+        newVec.push_back(node);
+    }
+    this->_iterNodesVec=newVec;
+}
 //Iterator Constructor:
 OrgChart::Iterator::Iterator() : _currNodePtr(NULL){}
 
@@ -25,7 +33,7 @@ OrgChart::Iterator::Iterator(Node* node, unsigned int type){
             init_BFS(node);
             break;
         case 1:
-            // init_reBFS(node);
+            init_reBFS(node);
             break;
         case 2:
             // init_DFS(node);
@@ -39,29 +47,40 @@ OrgChart::Iterator::Iterator(Node* node, unsigned int type){
 }
 
 //Iterator Operators:
-std::string& OrgChart::Iterator::operator * () const{}
-std::string* OrgChart::Iterator::operator -> () const{}
-bool OrgChart::Iterator::operator == (const Iterator& other) const{}
-bool OrgChart::Iterator::operator != (const Iterator& other) const{}
+// std::string& OrgChart::Iterator::operator * () const{}
+// std::string* OrgChart::Iterator::operator -> () const{}
+// bool OrgChart::Iterator::operator == (const Iterator& other) const{}
+// bool OrgChart::Iterator::operator != (const Iterator& other) const{}
 // Iterator& OrgChart::Iterator::operator ++ (){}
 // Iterator& OrgChart::Iterator::operator ++ (int){}/////???
 //These functions will load the iteration vector in the appropriate fashion.
 void OrgChart::Iterator::init_BFS(Node* node){
     //already checked if node is NULL in Iterator Constructor:
     std::queue<Node*> nodeQ;
+    std::vector<Node*> newVec;
     nodeQ.push(node);
     //BFS algo:
     while(!nodeQ.empty()){
         Node* curr = nodeQ.front();
-        this->getIterNodeVec().push_back(curr);
+        newVec.push_back(curr);
         for(Node* child : curr->getChildrenVec()){
             nodeQ.push(child);
         }
         nodeQ.pop();
     }
+    this->setIterNodeVec(newVec);
 }
-void OrgChart::Iterator::init_reBFS(Node* node){
 
+void OrgChart::Iterator::init_reBFS(Node* node){
+    //Using the BFS algo to create the original order in the Iterator NOde vector:
+    init_BFS(node);
+    std::vector<Node*> reverseVec;
+    int size = this->getIterNodeVec().size();
+    for(int i=0; i<size; i++){
+        reverseVec.push_back(this->getIterNodeVec().at(size-1-i));
+    }
+    //Setting the Iter vector to the reverse one:
+    this->setIterNodeVec(reverseVec);
 }
 void OrgChart::Iterator::init_DFS(Node* node){}
 
