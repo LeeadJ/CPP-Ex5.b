@@ -1,112 +1,114 @@
-#include "Node.hpp"
-#include "OrgChart.hpp"
-#include<queue>
-using namespace std;
-using namespace ariel;
-int main(){
-    // Node a{"CEO"};
-    // Node* b = new Node{"Leead"};
-    // Node* c = new Node{"Maayan"};
-    // Node* d = new Node{"Lavi"};
-    // a.printNode();
-    // a.getChildrenVec().push_back(b);
-    // a.getChildrenVec().push_back(c);
-    // a.getChildrenVec().push_back(d);
-    // a.printNode();
-    // if(!NULL){
-    //     cout<<"HI"<<endl;
-    // }
+// #include "Node.hpp"
+// #include "OrgChart.hpp"
+// #include<queue>
+// using namespace std;
+// using namespace ariel;
 
-    // OrgChart o;
-    // o.add_root("CEO");
-    // // cout<<"HI"<<endl;
-    // o.add_sub("CEO", "CTO");
-    // o.add_sub("CEO", "CFO");
-    // o.add_sub("CEO", "COO");
-    // o.add_sub("CTO", "VP_SW");
-    // o.add_sub("COO", "VP_BI");
-    // o.add_sub("2", "2.2");
-    // o.add_sub("4", "4.1");
-    // o.add_sub("4.1", "4.1.1");
+// int main(){
+//     // vector<string> names = {"Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Weedle", "Pidgey"};
+//     // vector<string> exp_level_order = {names[0], names[1], names[2], names[3], names[4], names[5]};
+//     // vector<string> exp_reverse_order = {names[4], names[5], names[1], names[2], names[3], names[0]};
+//     // vector<string> exp_preorder = {names[0], names[1], names[4], names[2], names[3], names[5]};
+//     // OrgChart organization;
+//     // organization.add_root(names[0])
+//     //     .add_sub(names[0], names[1])
+//     //     .add_sub(names[0], names[2])
+//     //     .add_sub(names[0], names[3])
+//     //     .add_sub(names[1], names[4])
+//     //     .add_sub(names[3], names[5]);
+//     // size_t i = 0;
+//     // for (auto it = organization.begin_level_order(); it != organization.end_level_order(); ++it)
+//     // {
+//     //     cout<<(*it)<<" ";
+//     // } // Needs to be like exp_level_order
+//     // cout<<""<<endl;
 
-    //cout<<"BFS TEST"<<endl;
-    // queue<Node*> nodeQ;
-    // nodeQ.push(o.getRootPtr());
-    // while(!nodeQ.empty()){
-    //     Node* temp = nodeQ.front();
-    //     temp->printNode();
-    //     cout<<""<<endl;
-    //     for(Node* child : temp->getChildrenVec()){
-    //         nodeQ.push(child);
-    //     }
-    //     nodeQ.pop();
-    // }
-    
-    // OrgChart::Iterator it{o.getRootPtr(), 2};
-    // cout<<"HI"<<endl;
-    // for(Node* node : it.getIterNodeVec()){
-    //     node->printNode();
-    //     cout<<""<<endl;
-    // }
-    // for(Node* n : it.getIterNodeVec()){
-    //     cout<<"("<<n->getData()<<") <--> ";
-    // }
-    // cout<<"||"<<endl;
+//     // i = 0;
+//     // for (auto it = organization.begin_reverse_order(); it != organization.reverse_order(); ++it)
+//     // {
+//     //     cout<<(*it)<<" ";
+//     // } // Needs to be like exp_reverse_order
+//     // cout<<""<<endl;
 
-    // vector<int> vec = {1,2,3};
-    // vec.insert(vec.begin(),9);
-    // for(int i : vec){
-    //     cout<<i<<endl;
-    // }
+//     OrgChart o;
+//     o.add_root("CEO")
+//         .add_sub("CEO", "CTO")
+//         .add_sub("CEO", "CFO")
+//         .add_sub("CEO", "COO")
+//         .add_sub("CTO", "VP_SI")
+//         .add_sub("COO", "VP_BI");
+//     cout<<"Level Order:"<<endl;
+//     for (auto it = o.begin_level_order(); it != o.end_level_order(); ++it){
+//         cout<<(*it)<<" ";
+//     }
+//     cout<<""<<endl;
+//     cout<<"Pre Order:"<<endl;
+//     for (auto itr = o.begin_preorder(); itr != o.end_preorder(); ++itr){
+//         cout<<(*itr)<<" ";
+//     }
+//     cout<<""<<endl;
 
-    // OrgChart::Iterator it = o.begin();
-    // OrgChart::Iterator it2 = o.end();
-    // bool a = it2.getCurrNodePtr()==NULL;
-    // bool b = it == it2;
-    // cout<<it.getCurrNodePtr()->getData()<<endl;
-    // cout<<a<<endl;
-    // while(it.getCurrNodePtr() != NULL){
-    //     cout<<(*it)<<endl;
-    //     it++;
-    // }
-    
-    // cout<<"||"<<endl;
-    // auto it = o.begin_level_order();
-    // cout<<it.getCurrNodePtr()->getData()<<endl;
-    // ++it;
-    // cout<<it.getCurrNodePtr()->getData()<<endl;
-    // ++it;
-    // cout<<it.getCurrNodePtr()->getData()<<endl;
-    // ++it;
-    // cout<<it.getCurrNodePtr()->getData()<<endl;
+//     cout<<"Reverse Order:"<<endl;
+//     for (auto it = o.begin_reverse_order(); it != o.reverse_order(); ++it){
+//         cout<<(*it)<<" ";
+//     }
+//     cout<<""<<endl;
 
-    // auto itr = o.end_level_order();
-    // cout<<(itr.getCurrNodePtr()==NULL)<<endl;
-    // for (auto it = o.begin_level_order(); it != o.end_level_order(); ++it){
-    //     cout << (*it) << " " ;
-    // } // prints: CEO CTO CFO COO VP_SW VP_BI
 
-    OrgChart organization;
-    organization.add_root("CEO")
-    .add_sub("CEO", "CTO")         // Now the CTO is subordinate to the CEO
-    .add_sub("CEO", "CFO")         // Now the CFO is subordinate to the CEO
-    .add_sub("CEO", "COO")         // Now the COO is subordinate to the CEO
-    .add_sub("CTO", "VP_SW") // Now the VP Software is subordinate to the CTO
-    .add_sub("COO", "VP_BI");      // Now the VP_BI is subordinate to the COO
+//     // class Person {
+//     // public:
+//     //     string name;
+//     //     int age;
 
-    for (auto it = organization.begin_level_order(); it != organization.end_level_order(); ++it)
-  {
-    cout << (*it) << " " ;
-  } // prints: CEO CTO CFO COO VP_SW VP_BI
-  cout<<""<<endl;
-  for (auto it = organization.begin_reverse_order(); it != organization.reverse_order(); ++it)
-  {
-    cout << (*it) << " " ;
-  } // prints: VP_SW VP_BI CTO CFO COO CEO
-  cout<<""<<endl;
-  for (auto it=organization.begin_preorder(); it!=organization.end_preorder(); ++it) {
-    cout << (*it) << " " ;
-  }  // prints: CEO CTO VP_SW CFO COO VP_BI
-  cout<<""<<endl;
-    return 0;
-}
+//     //     Person(string Name, int Age) : name(Name), age(Age) {}
+
+//     //     bool operator==(Person &p1) {
+//     //         return this->name == p1.name;
+//     //     }
+//     // };
+//     // //instantiate People
+//     // Person Great_GrandFather("Great_GrandFather", 85);
+//     // Person Grandfather("GrandFather", 65);
+//     // Person Father("Father", 45);
+//     // Person Uncle("Uncle", 43);
+//     // Person Aunt("Aunt", 43);
+//     // Person Son("Son", 20);
+//     // Person Daughter("Daughter", 18);
+//     // Person Cousin("Cousin", 15);
+//     // Person GreatGrandma("GreatGrandma", 84);
+//     // Person Cousin2("Cousin2", 14);
+//     // Person GreatUncle("GreatUncle", 62);
+//     // OrgChart chart1;
+
+//     // chart1.add_root(Aunt.name);
+//     // chart1.add_root(Great_GrandFather.name);
+//     // chart1.add_sub(Great_GrandFather.name, Grandfather.name);
+//     // chart1.add_sub(Grandfather.name, Father.name);
+//     // chart1.add_sub(Grandfather.name, Uncle.name);
+//     // chart1.add_sub(Grandfather.name, Aunt.name);
+//     // chart1.add_sub(Father.name, Son.name);
+//     // chart1.add_sub(Father.name, Daughter.name);
+//     // chart1.add_sub(Uncle.name, Cousin.name);
+//     // chart1.add_sub(Aunt.name, Cousin2.name);
+//     // chart1.add_sub(Great_GrandFather.name, GreatUncle.name); 
+//     // chart1.add_root(GreatGrandma.name);
+
+
+
+
+//     // cout<<"he"<<endl;
+//     // vector<string> pre_order;
+//     // for (auto it = chart1.begin_preorder(); it != chart1.end_preorder(); ++it) {
+//     //     pre_order.push_back(*it);
+//     //     cout<<(*it)<<endl;
+//     //     // it.getCurrNodePtr()->printNode();
+//     // }
+//     // cout<<pre_order.size()<<endl;
+
+//     // // cout<<"he"<<endl;
+//     // cout<<(pre_order.at(0) == GreatGrandma.name)<<endl;;
+//     // cout<<(pre_order.at(1) == Grandfather.name)<<endl;
+//     // cout<<(pre_order.at(2)== Father.name)<<endl;
+//     // cout<<(pre_order.at(3)== Son.name)<<endl;
+//     return 0;
+// }

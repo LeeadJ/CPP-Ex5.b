@@ -24,11 +24,11 @@ namespace ariel{
 
                     //Iterator Constructor:
                     Iterator();////
-                    Iterator(Node* node, unsigned int type); // 0=level(==BFS), 1=reverse(==reverse-BFS), 2=pre(==DFS)
+                    Iterator(Node* node, int type); // 0=level(==BFS), 1=reverse(==reverse-BFS), 2=pre(==DFS)
                     //Iterator Functions:
                     
                     //Iterator Operators:
-                    std::string operator * ();////
+                    std::string operator * () const;////
                     std::string* operator -> () const;
                     bool operator == (const Iterator& other) const;////
                     bool operator != (const Iterator& other) const;////
@@ -55,16 +55,16 @@ namespace ariel{
             OrgChart& add_sub(const std::string& parent, const std::string& child);////
             Iterator begin() const;////
             Iterator end() const;////
-            Iterator begin_level_order() const;
-            Iterator end_level_order() const;
-            Iterator begin_reverse_order() const;
-            Iterator reverse_order() const;
-            Iterator begin_preorder() const;
-            Iterator end_preorder() const;
+            Iterator begin_level_order() const;////
+            Iterator end_level_order() const;////
+            Iterator begin_reverse_order() const;////
+            Iterator reverse_order() const;////
+            Iterator begin_preorder() const;////
+            Iterator end_preorder() const;////
             
             
 
             //OrgChart Operators:
-            friend std::ostream& operator << (std::ostream& out, OrgChart& chart);
+            friend std::ostream& operator << (std::ostream& out, OrgChart& chart);////
     };
 }
