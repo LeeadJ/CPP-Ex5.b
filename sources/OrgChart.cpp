@@ -1,13 +1,14 @@
 #include "OrgChart.hpp"
 #include <queue>
 #include <stack>
+#include <algorithm>
 using namespace ariel;
 
 //OrgChart Getters:
 Node* OrgChart::getRootPtr() const {return this->_root;}
 
 //Iterator Getters:
-Node* OrgChart::Iterator::getCurrNodePtr() const{return this->_currNodePtr;}
+Node* OrgChart::Iterator::getCurrNodePtr() const {return this->_currNodePtr;}
 
 std::vector<Node*>& OrgChart::Iterator::getIterNodeVec() {return this->_iterNodesVec;}
 
@@ -47,12 +48,40 @@ OrgChart::Iterator::Iterator(Node* node, unsigned int type){
 }
 
 //Iterator Operators:
-// std::string& OrgChart::Iterator::operator * () const{}
-// std::string* OrgChart::Iterator::operator -> () const{}
-// bool OrgChart::Iterator::operator == (const Iterator& other) const{}
-// bool OrgChart::Iterator::operator != (const Iterator& other) const{}
-// Iterator& OrgChart::Iterator::operator ++ (){}
-// Iterator& OrgChart::Iterator::operator ++ (int){}/////???
+std::string OrgChart::Iterator::operator * () {
+    return this->getCurrNodePtr()->getData();
+}
+// std::string* OrgChart::Iterator::operator -> () const{
+//     return &(this->_currNodePtr->getData());
+// }
+bool OrgChart::Iterator::operator == (const Iterator& other) const{
+    return this->getCurrNodePtr()->getData() == other.getCurrNodePtr()->getData();
+}
+bool OrgChart::Iterator::operator != (const Iterator& other) const{
+    return  !(*this==other);
+}
+OrgChart::Iterator& OrgChart::Iterator::operator ++ (){ //Prefix(++var)
+    if(this->getIterNodeVec().size()==1){
+        this->_currNodePtr=NULL;
+    }
+    else{
+        std::vector<Node*>::iterator it = std::find(this->getIterNodeVec().begin(), this->getIterNodeVec().end(), this->getCurrNodePtr());
+        int index = std::distance(this->getIterNodeVec().begin(), it);
+        //Check if the index of the currNodePtr is pointing to the last element in the vector. If so, can't increment:
+        if(index == this->getIterNodeVec().size()-1){
+            // throw std::runtime_error("Iterator Operator ++ Error: Out of Range Error!");
+            this->_currNodePtr=NULL;
+        }
+        else{
+            this->_currNodePtr=this->getIterNodeVec().at(index+1);
+        }
+    }
+    return *this;
+}
+// OrgChart::Iterator& OrgChart::Iterator::operator ++ (int){
+//     Iterator it = *this;
+//     this->getCurrNodePtr()++;
+// }
 //These functions will load the iteration vector in the appropriate fashion.
 void OrgChart::Iterator::init_BFS(Node* node){
     //already checked if node is NULL in Iterator Constructor:
@@ -163,14 +192,15 @@ OrgChart::Iterator OrgChart::begin() const{
     }
     return Iterator{this->getRootPtr(), 0};
 }
+
 OrgChart::Iterator OrgChart::end() const{
     //Check it the chart is not empty:
     if(this->getRootPtr()==NULL){
         throw std::runtime_error("OrgChart add_sub Error: The Chart is empty!");
     }
     //Initializing a NULL iterator:
-    // Iterator it;
-    return Iterator();
+    Iterator it;
+    return it;
 }
 // Iterator OrgChart::begin_level_order() const{}
 // Iterator OrgChart::end_level_order() const{}
