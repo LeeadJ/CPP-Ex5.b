@@ -6,6 +6,66 @@ using namespace ariel;
 //OrgChart Getters:
 Node* OrgChart::getRootPtr() const {return this->_root;}
 
+//Iterator Getters:
+Node* OrgChart::Iterator::getCurrNodePtr() const{return this->_currNodePtr;}
+
+std::vector<Node*>& OrgChart::Iterator::getIterNodeVec() {return this->_iterNodesVec;}
+
+//Iterator Constructor:
+OrgChart::Iterator::Iterator() : _currNodePtr(NULL){}
+
+OrgChart::Iterator::Iterator(Node* node, unsigned int type){
+    if(node==NULL){
+        this->_currNodePtr=NULL;
+        return;
+    }
+    // 0=level(==BFS), 1=reverse(==reverse-BFS), 2=pre(==DFS)
+    switch(type){
+        case 0:
+            init_BFS(node);
+            break;
+        case 1:
+            // init_reBFS(node);
+            break;
+        case 2:
+            // init_DFS(node);
+            break;
+        default:
+        
+            throw std::runtime_error("Iterator Constructor Error: Type entered not in range.");
+    }
+    //Setting the iterator pointer to the first node in its nodeVec:
+    this->_currNodePtr=this->getIterNodeVec().front();
+}
+
+//Iterator Operators:
+std::string& OrgChart::Iterator::operator * () const{}
+std::string* OrgChart::Iterator::operator -> () const{}
+bool OrgChart::Iterator::operator == (const Iterator& other) const{}
+bool OrgChart::Iterator::operator != (const Iterator& other) const{}
+// Iterator& OrgChart::Iterator::operator ++ (){}
+// Iterator& OrgChart::Iterator::operator ++ (int){}/////???
+//These functions will load the iteration vector in the appropriate fashion.
+void OrgChart::Iterator::init_BFS(Node* node){
+    //already checked if node is NULL in Iterator Constructor:
+    std::queue<Node*> nodeQ;
+    nodeQ.push(node);
+    //BFS algo:
+    while(!nodeQ.empty()){
+        Node* curr = nodeQ.front();
+        this->getIterNodeVec().push_back(curr);
+        for(Node* child : curr->getChildrenVec()){
+            nodeQ.push(child);
+        }
+        nodeQ.pop();
+    }
+}
+void OrgChart::Iterator::init_reBFS(Node* node){
+
+}
+void OrgChart::Iterator::init_DFS(Node* node){}
+
+
 //OrgChart Constructor:
 OrgChart::OrgChart() : _root(NULL){}
 // OrgChart::OrgChart(const OrgChart& otherChart){}
@@ -67,4 +127,9 @@ OrgChart& OrgChart::add_sub(const std::string& parent, const std::string& child)
 // Iterator OrgChart::reverse_order() const{}
 // Iterator OrgChart::begin_preorder() const{}
 // Iterator OrgChart::end_preorder() const{}
+
+ //OrgChart Operators:
+// std::ostream& ariel::operator << (std::ostream& out, OrgChart& chart){
+
+// }
 

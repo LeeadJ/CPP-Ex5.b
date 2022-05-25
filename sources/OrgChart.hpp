@@ -14,15 +14,15 @@ namespace ariel{
             class Iterator{
                 private:
                     Node* _currNodePtr;
-                    std::vector<Node*> _iterNodesVec;/////
+                    std::vector<Node*> _iterNodesVec;
                 public:
                     //Iterator Getters:
                     Node* getCurrNodePtr() const;
-                    std::vector<Node*> getIterNodeVec() const;/////
+                    std::vector<Node*>& getIterNodeVec();
 
                     //Iterator Constructor:
                     Iterator();
-                    Iterator(Node* node, const int type); // 0=level(==BFS), 1=reverse(==reverse-BFS), 2=pre(==DFS)
+                    Iterator(Node* node, unsigned int type); // 0=level(==BFS), 1=reverse(==reverse-BFS), 2=pre(==DFS)
                     //Iterator Functions:
                     
                     //Iterator Operators:
