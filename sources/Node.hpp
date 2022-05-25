@@ -11,7 +11,7 @@ namespace ariel{
         
         public:
             //Getters:
-            std::string getData() const;
+            std::string& getData() ;
             std::vector<Node*>& getChildrenVec();
 
             //Setters:

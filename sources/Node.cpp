@@ -1,7 +1,7 @@
 #include "Node.hpp"
 using namespace ariel;
 //Getters:
-std::string Node::getData() const {return this->_data;}
+std::string& Node::getData() {return this->_data;}
 std::vector<Node*>& Node::getChildrenVec() {return this->_children;}
 
 //Setters:
