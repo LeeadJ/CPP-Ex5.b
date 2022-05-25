@@ -14,9 +14,6 @@ namespace ariel{
             std::string& getData() ;
             std::vector<Node*>& getChildrenVec();
 
-            //Setters:
-            void setData(const std::string& data);
-
             //Constructor:
             Node(const std::string& str);
 

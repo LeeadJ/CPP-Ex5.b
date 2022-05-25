@@ -4,11 +4,8 @@ using namespace ariel;
 std::string& Node::getData() {return this->_data;}
 std::vector<Node*>& Node::getChildrenVec() {return this->_children;}
 
-//Setters:
-void Node::setData(const std::string& data){this->_data=data;}
-
 //Constructor:
-Node::Node(const std::string& str) {this->setData(str);}
+Node::Node(const std::string& str) {this->_data=str;}
 
 //Destructor:
 Node::~Node(){}
@@ -20,6 +17,7 @@ void Node::addChild(const std::string& child){
     this->_children.push_back(ch);
 }
 
+//User added function (for testing purpose):
 void Node::printNode(){
     std::cout<<"Node Data: " << this->getData() << std::endl;
     std::cout<< "Children Vec: {";
