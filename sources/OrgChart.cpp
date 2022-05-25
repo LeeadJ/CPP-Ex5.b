@@ -36,7 +36,7 @@ OrgChart::Iterator::Iterator(Node* node, unsigned int type){
             init_reBFS(node);
             break;
         case 2:
-            // init_DFS(node);
+            init_DFS(node);
             break;
         default:
         
@@ -91,8 +91,8 @@ void OrgChart::Iterator::init_DFS(Node* node){
         Node* curr = nodeS.top();
         this->getIterNodeVec().push_back(curr);
         nodeS.pop();
-        for(Node* child : curr->getChildrenVec()){
-            nodeS.push(child);
+        for(int i=curr->getChildrenVec().size()-1; i>=0; i--){
+            nodeS.push(curr->getChildrenVec().at(i));
         }
     }
 }
@@ -142,6 +142,10 @@ OrgChart& OrgChart::add_root(const std::string& r){
 }
 
 OrgChart& OrgChart::add_sub(const std::string& parent, const std::string& child){
+    //Check it the chart is not empty:
+    if(this->getRootPtr()==NULL){
+        throw std::runtime_error("OrgChart add_sub Error: The Chart is empty!");
+    }
     //Check if the parent exists:
     if(this->find(parent)==NULL){
         throw std::runtime_error("OrgChart add_sub Error: Parent not in Chart!");
@@ -152,8 +156,22 @@ OrgChart& OrgChart::add_sub(const std::string& parent, const std::string& child)
     return *this;
     
 }
-// Iterator OrgChart::begin() const{}
-// Iterator OrgChart::end() const{}
+OrgChart::Iterator OrgChart::begin() const{
+    //Check it the chart is not empty:
+    if(this->getRootPtr()==NULL){
+        throw std::runtime_error("OrgChart add_sub Error: The Chart is empty!");
+    }
+    return Iterator{this->getRootPtr(), 0};
+}
+OrgChart::Iterator OrgChart::end() const{
+    //Check it the chart is not empty:
+    if(this->getRootPtr()==NULL){
+        throw std::runtime_error("OrgChart add_sub Error: The Chart is empty!");
+    }
+    //Initializing a NULL iterator:
+    // Iterator it;
+    return Iterator();
+}
 // Iterator OrgChart::begin_level_order() const{}
 // Iterator OrgChart::end_level_order() const{}
 // Iterator OrgChart::begin_reverse_order() const{}

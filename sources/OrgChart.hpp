@@ -9,7 +9,7 @@ namespace ariel{
         
         public:
             //OrgChart Getters:
-            Node* getRootPtr() const;
+            Node* getRootPtr() const;////
 
             class Iterator{
                 private:
@@ -17,13 +17,13 @@ namespace ariel{
                     std::vector<Node*> _iterNodesVec;
                 public:
                     //Iterator Getters:
-                    Node* getCurrNodePtr() const;
-                    std::vector<Node*>& getIterNodeVec();
+                    Node* getCurrNodePtr() const;////
+                    std::vector<Node*>& getIterNodeVec();////
                     //Iterator Setter:
-                    void setIterNodeVec(const std::vector<Node*>& other);
+                    void setIterNodeVec(const std::vector<Node*>& other);////
 
                     //Iterator Constructor:
-                    Iterator();
+                    Iterator();////
                     Iterator(Node* node, unsigned int type); // 0=level(==BFS), 1=reverse(==reverse-BFS), 2=pre(==DFS)
                     //Iterator Functions:
                     
@@ -35,24 +35,24 @@ namespace ariel{
                     Iterator& operator ++ ();
                     Iterator& operator ++ (int);/////???
                     //These functions will load the iteration vector in the appropriate fashion.
-                    void init_BFS(Node* node);
-                    void init_reBFS(Node* node);
-                    void init_DFS(Node* node);
+                    void init_BFS(Node* node);////
+                    void init_reBFS(Node* node);////
+                    void init_DFS(Node* node);////
                     
 
             };
 
             //OrgChart Constructor:
-            OrgChart();
+            OrgChart();////
             // OrgChart(const OrgChart& otherChart);
             
             //OrgChart Destructor:
-            ~OrgChart();
+            ~OrgChart();////
 
             //OrgChart Functions:
-            Node* find(const std::string& node) const;
-            OrgChart& add_root(const std::string& r);
-            OrgChart& add_sub(const std::string& parent, const std::string& child);
+            Node* find(const std::string& node) const;////
+            OrgChart& add_root(const std::string& r);////
+            OrgChart& add_sub(const std::string& parent, const std::string& child);////
             Iterator begin() const;
             Iterator end() const;
             Iterator begin_level_order() const;
