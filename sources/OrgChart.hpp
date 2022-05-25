@@ -38,6 +38,7 @@ namespace ariel{
                     void init_BFS(Node* node);
                     void init_reBFS(Node* node);
                     void init_DFS(Node* node);
+                    
 
             };
 

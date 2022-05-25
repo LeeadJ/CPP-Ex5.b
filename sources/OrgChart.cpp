@@ -57,32 +57,46 @@ OrgChart::Iterator::Iterator(Node* node, unsigned int type){
 void OrgChart::Iterator::init_BFS(Node* node){
     //already checked if node is NULL in Iterator Constructor:
     std::queue<Node*> nodeQ;
-    std::vector<Node*> newVec;
     nodeQ.push(node);
     //BFS algo:
     while(!nodeQ.empty()){
         Node* curr = nodeQ.front();
-        newVec.push_back(curr);
+        this->getIterNodeVec().push_back(curr);
         for(Node* child : curr->getChildrenVec()){
             nodeQ.push(child);
         }
         nodeQ.pop();
     }
-    this->setIterNodeVec(newVec);
 }
 
 void OrgChart::Iterator::init_reBFS(Node* node){
-    //Using the BFS algo to create the original order in the Iterator NOde vector:
-    init_BFS(node);
-    std::vector<Node*> reverseVec;
-    int size = this->getIterNodeVec().size();
-    for(int i=0; i<size; i++){
-        reverseVec.push_back(this->getIterNodeVec().at(size-1-i));
+    //already checked if node is NULL in Iterator Constructor:
+    std::queue<Node*> nodeQ;
+    nodeQ.push(node);
+    while(!nodeQ.empty()){
+        Node* curr = nodeQ.front();
+        //Inserting the top of the queue at the beggining of the vector, thus reversing its order: 
+        this->getIterNodeVec().insert(this->getIterNodeVec().begin(), curr);
+        for(int i = curr->getChildrenVec().size() -1; i>=0; i--){
+            nodeQ.push(curr->getChildrenVec().at(i));
+        }
+        nodeQ.pop();
     }
-    //Setting the Iter vector to the reverse one:
-    this->setIterNodeVec(reverseVec);
 }
-void OrgChart::Iterator::init_DFS(Node* node){}
+void OrgChart::Iterator::init_DFS(Node* node){
+    //already checked if node is NULL in Iterator Constructor:
+    std::stack<Node*> nodeS;
+    nodeS.push(node);
+    while(!nodeS.empty()){
+        Node* curr = nodeS.top();
+        this->getIterNodeVec().push_back(curr);
+        nodeS.pop();
+        for(Node* child : curr->getChildrenVec()){
+            nodeS.push(child);
+        }
+    }
+}
+
 
 
 //OrgChart Constructor:
