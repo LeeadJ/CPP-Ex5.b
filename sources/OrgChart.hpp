@@ -28,12 +28,12 @@ namespace ariel{
                     //Iterator Functions:
                     
                     //Iterator Operators:
-                    std::string operator * ();
+                    std::string operator * ();////
                     std::string* operator -> () const;
-                    bool operator == (const Iterator& other) const;
-                    bool operator != (const Iterator& other) const;
-                    Iterator& operator ++ ();
-                    Iterator operator ++ (int);
+                    bool operator == (const Iterator& other) const;////
+                    bool operator != (const Iterator& other) const;////
+                    Iterator& operator ++ ();////
+                    Iterator operator ++ (int);////
                     //These functions will load the iteration vector in the appropriate fashion.
                     void init_BFS(Node* node);////
                     void init_reBFS(Node* node);////
@@ -53,8 +53,8 @@ namespace ariel{
             Node* find(const std::string& node) const;////
             OrgChart& add_root(const std::string& r);////
             OrgChart& add_sub(const std::string& parent, const std::string& child);////
-            Iterator begin() const;
-            Iterator end() const;
+            Iterator begin() const;////
+            Iterator end() const;////
             Iterator begin_level_order() const;
             Iterator end_level_order() const;
             Iterator begin_reverse_order() const;

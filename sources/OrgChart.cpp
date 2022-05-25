@@ -54,8 +54,9 @@ std::string OrgChart::Iterator::operator * () {
 // std::string* OrgChart::Iterator::operator -> () const{
 //     return &(this->_currNodePtr->getData());
 // }
+
 bool OrgChart::Iterator::operator == (const Iterator& other) const{
-    return this->getCurrNodePtr()->getData() == other.getCurrNodePtr()->getData();
+    return this->getCurrNodePtr() == other.getCurrNodePtr();
 }
 bool OrgChart::Iterator::operator != (const Iterator& other) const{
     return  !(*this==other);
@@ -83,6 +84,8 @@ OrgChart::Iterator OrgChart::Iterator::operator ++ (int){
     ++*this;
     return it;
 }
+
+
 //These functions will load the iteration vector in the appropriate fashion.
 void OrgChart::Iterator::init_BFS(Node* node){
     //already checked if node is NULL in Iterator Constructor:
@@ -200,15 +203,30 @@ OrgChart::Iterator OrgChart::end() const{
         throw std::runtime_error("OrgChart add_sub Error: The Chart is empty!");
     }
     //Initializing a NULL iterator:
-    Iterator it;
-    return it;
+    return Iterator{};
 }
-// Iterator OrgChart::begin_level_order() const{}
-// Iterator OrgChart::end_level_order() const{}
-// Iterator OrgChart::begin_reverse_order() const{}
-// Iterator OrgChart::reverse_order() const{}
-// Iterator OrgChart::begin_preorder() const{}
-// Iterator OrgChart::end_preorder() const{}
+
+//Similar to begin() and end() so no need to re-implement:
+OrgChart::Iterator OrgChart::begin_level_order() const {return this->begin();}
+
+OrgChart::Iterator OrgChart::end_level_order() const {return this->end();}
+
+OrgChart::Iterator OrgChart::begin_reverse_order() const{
+    //Check it the chart is not empty:
+    if(this->getRootPtr()==NULL){
+        throw std::runtime_error("OrgChart add_sub Error: The Chart is empty!");
+    }
+    return Iterator{this->getRootPtr(), 1};
+}
+OrgChart::Iterator OrgChart::reverse_order() const{ return this->end();}
+OrgChart::Iterator OrgChart::begin_preorder() const{
+    //Check it the chart is not empty:
+    if(this->getRootPtr()==NULL){
+        throw std::runtime_error("OrgChart add_sub Error: The Chart is empty!");
+    }
+    return Iterator{this->getRootPtr(), 2};
+}
+OrgChart::Iterator OrgChart::end_preorder() const{return this->end();}
 
  //OrgChart Operators:
 // std::ostream& ariel::operator << (std::ostream& out, OrgChart& chart){

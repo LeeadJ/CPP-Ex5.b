@@ -17,14 +17,14 @@ int main(){
     //     cout<<"HI"<<endl;
     // }
 
-    OrgChart o;
-    o.add_root("CEO");
-    // cout<<"HI"<<endl;
-    o.add_sub("CEO", "CTO");
-    o.add_sub("CEO", "CFO");
-    o.add_sub("CEO", "COO");
-    o.add_sub("CTO", "VP_SW");
-    o.add_sub("COO", "VP_BI");
+    // OrgChart o;
+    // o.add_root("CEO");
+    // // cout<<"HI"<<endl;
+    // o.add_sub("CEO", "CTO");
+    // o.add_sub("CEO", "CFO");
+    // o.add_sub("CEO", "COO");
+    // o.add_sub("CTO", "VP_SW");
+    // o.add_sub("COO", "VP_BI");
     // o.add_sub("2", "2.2");
     // o.add_sub("4", "4.1");
     // o.add_sub("4.1", "4.1.1");
@@ -59,23 +59,54 @@ int main(){
     //     cout<<i<<endl;
     // }
 
-    OrgChart::Iterator it = o.begin();
-    OrgChart::Iterator it2 = o.end();
-    bool a = it2.getCurrNodePtr()==NULL;
+    // OrgChart::Iterator it = o.begin();
+    // OrgChart::Iterator it2 = o.end();
+    // bool a = it2.getCurrNodePtr()==NULL;
     // bool b = it == it2;
     // cout<<it.getCurrNodePtr()->getData()<<endl;
     // cout<<a<<endl;
-    while(it.getCurrNodePtr() != NULL){
-        cout<<it.getCurrNodePtr()->getData()<<endl;
-        it++;
-    }
-    
-    // while(it != o.end()){
-    //     cout<<"HI"<<endl;
-    //     cout<<"("<<it.getCurrNodePtr()->getData()<<") <--> ";
+    // while(it.getCurrNodePtr() != NULL){
+    //     cout<<(*it)<<endl;
+    //     it++;
     // }
-    cout<<"||"<<endl;
     
-    
+    // cout<<"||"<<endl;
+    // auto it = o.begin_level_order();
+    // cout<<it.getCurrNodePtr()->getData()<<endl;
+    // ++it;
+    // cout<<it.getCurrNodePtr()->getData()<<endl;
+    // ++it;
+    // cout<<it.getCurrNodePtr()->getData()<<endl;
+    // ++it;
+    // cout<<it.getCurrNodePtr()->getData()<<endl;
+
+    // auto itr = o.end_level_order();
+    // cout<<(itr.getCurrNodePtr()==NULL)<<endl;
+    // for (auto it = o.begin_level_order(); it != o.end_level_order(); ++it){
+    //     cout << (*it) << " " ;
+    // } // prints: CEO CTO CFO COO VP_SW VP_BI
+
+    OrgChart organization;
+    organization.add_root("CEO")
+    .add_sub("CEO", "CTO")         // Now the CTO is subordinate to the CEO
+    .add_sub("CEO", "CFO")         // Now the CFO is subordinate to the CEO
+    .add_sub("CEO", "COO")         // Now the COO is subordinate to the CEO
+    .add_sub("CTO", "VP_SW") // Now the VP Software is subordinate to the CTO
+    .add_sub("COO", "VP_BI");      // Now the VP_BI is subordinate to the COO
+
+    for (auto it = organization.begin_level_order(); it != organization.end_level_order(); ++it)
+  {
+    cout << (*it) << " " ;
+  } // prints: CEO CTO CFO COO VP_SW VP_BI
+  cout<<""<<endl;
+  for (auto it = organization.begin_reverse_order(); it != organization.reverse_order(); ++it)
+  {
+    cout << (*it) << " " ;
+  } // prints: VP_SW VP_BI CTO CFO COO CEO
+  cout<<""<<endl;
+  for (auto it=organization.begin_preorder(); it!=organization.end_preorder(); ++it) {
+    cout << (*it) << " " ;
+  }  // prints: CEO CTO VP_SW CFO COO VP_BI
+  cout<<""<<endl;
     return 0;
 }
