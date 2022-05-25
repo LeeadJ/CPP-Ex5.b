@@ -33,7 +33,7 @@ namespace ariel{
                     bool operator == (const Iterator& other) const;
                     bool operator != (const Iterator& other) const;
                     Iterator& operator ++ ();
-                    // Iterator& operator ++ (int);/////???
+                    Iterator operator ++ (int);
                     //These functions will load the iteration vector in the appropriate fashion.
                     void init_BFS(Node* node);////
                     void init_reBFS(Node* node);////

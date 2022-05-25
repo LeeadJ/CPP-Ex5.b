@@ -67,7 +67,7 @@ int main(){
     // cout<<a<<endl;
     while(it.getCurrNodePtr() != NULL){
         cout<<it.getCurrNodePtr()->getData()<<endl;
-        ++it;
+        it++;
     }
     
     // while(it != o.end()){

@@ -78,10 +78,11 @@ OrgChart::Iterator& OrgChart::Iterator::operator ++ (){ //Prefix(++var)
     }
     return *this;
 }
-// OrgChart::Iterator& OrgChart::Iterator::operator ++ (int){
-//     Iterator it = *this;
-//     this->getCurrNodePtr()++;
-// }
+OrgChart::Iterator OrgChart::Iterator::operator ++ (int){
+    Iterator it = *this;
+    ++*this;
+    return it;
+}
 //These functions will load the iteration vector in the appropriate fashion.
 void OrgChart::Iterator::init_BFS(Node* node){
     //already checked if node is NULL in Iterator Constructor:
