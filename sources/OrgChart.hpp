@@ -46,7 +46,7 @@ namespace ariel{
             OrgChart();
                
             //OrgChart Destructor:
-            ~OrgChart();
+            // ~OrgChart();
 
             //OrgChart Functions:
             Node* find(const std::string& node) const;

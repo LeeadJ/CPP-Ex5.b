@@ -140,7 +140,7 @@ void OrgChart::Iterator::init_DFS(Node* node){
 OrgChart::OrgChart() : _root(NULL){}
 
 //OrgChart Destructor:
-OrgChart::~OrgChart(){}
+// OrgChart::~OrgChart(){}
 
 //OrgChart Functions:
 //This will be implemented in BFS format

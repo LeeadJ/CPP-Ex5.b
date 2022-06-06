@@ -8,7 +8,7 @@ std::vector<Node*>& Node::getChildrenVec() {return this->_children;}
 Node::Node(const std::string& str) {this->_data=str;}
 
 //Destructor:
-Node::~Node(){}
+// Node::~Node(){}
 
 //Functions:
 //Addes a child to the Nodes children vector.
