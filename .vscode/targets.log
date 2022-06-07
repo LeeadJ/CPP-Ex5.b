@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun  6 15:12:57 2022
+# Make data base, printed on Tue Jun  7 12:00:24 2022
 
 # Variables
 
@@ -61,7 +59,7 @@ PATH = /home/leeadj/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-94019e6c-9b18-4bfb-911f-90b1e4af3112.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-814be2d1-9543-4982-9ddb-400c169341b9.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -164,10 +162,8 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 WSL_DISTRO_NAME = Ubuntu-20.04
 # makefile (from 'Makefile', line 10)
 TIDY_FLAGS = -extra-arg=-std=$(CXXVERSION) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=*
-# environment
-MOTD_SHOWN = update-motd
 # variable set hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=4/111=4%
+# Load=76/1024=7%, Rehash=0, Collisions=4/110=4%
 
 # Pattern-specific Variable Values
 
@@ -264,7 +260,6 @@ run: test
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -326,6 +321,8 @@ objects/Node.o:
 # strcache performance: lookups = 66 / hit rate = 30%
 # hash-table stats:
 # Load=46/8192=1%, Rehash=0, Collisions=3/66=5%
-# Finished Make data base on Mon Jun  6 15:12:57 2022
+# Finished Make data base on Tue Jun  7 12:00:24 2022
 
  
+make: *** No rule to make target 'all'.  Stop.
+
