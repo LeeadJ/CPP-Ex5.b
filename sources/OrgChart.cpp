@@ -138,9 +138,29 @@ void OrgChart::Iterator::init_DFS(Node* node){
 
 //OrgChart Constructor:
 OrgChart::OrgChart() : _root(NULL){}
+OrgChart::OrgChart(const OrgChart& other){
+    this->_root=other._root;
+}
 
 //OrgChart Destructor:
-// OrgChart::~OrgChart(){}
+OrgChart::~OrgChart(){
+    if(this->_root != nullptr){
+        std::queue<Node*> helperQ; 
+        helperQ.push(this->_root);
+        while(!helperQ.empty()){
+            unsigned int count = helperQ.size();
+            while(count > 0){
+                Node* temp = helperQ.front();
+                helperQ.pop();
+                for(unsigned int i = 0; i < temp->getChildrenVec().size(); i++){
+                    helperQ.push(temp->getChildrenVec().at(i));
+                }
+                count--;
+                delete temp;
+            }
+        }
+    }
+}
 
 //OrgChart Functions:
 //This will be implemented in BFS format
@@ -242,4 +262,16 @@ std::ostream& ariel::operator << (std::ostream& out, OrgChart& chart){
     }
     out << "||" << std::endl;
     return out;
+}
+
+OrgChart& OrgChart::operator = (const OrgChart& other){
+    if(this == &other){
+        return *this;
+    }
+    delete _root;
+    _root = new Node(*other._root);
+    return *this;
+}
+OrgChart& OrgChart::operator = (OrgChart&& other) noexcept{
+    return *this;
 }

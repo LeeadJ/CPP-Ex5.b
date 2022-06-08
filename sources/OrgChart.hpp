@@ -44,9 +44,12 @@ namespace ariel{
 
             //OrgChart Constructor:
             OrgChart();
+            OrgChart(const OrgChart& other);
+            OrgChart(OrgChart&& other) noexcept;
+            
                
             //OrgChart Destructor:
-            // ~OrgChart();
+            ~OrgChart();
 
             //OrgChart Functions:
             Node* find(const std::string& node) const;
@@ -63,5 +66,7 @@ namespace ariel{
 
             //OrgChart Operators:
             friend std::ostream& operator << (std::ostream& out, OrgChart& chart);
+            OrgChart& operator = (const OrgChart& other);
+            OrgChart& operator = (OrgChart&& other) noexcept;
     };
 }

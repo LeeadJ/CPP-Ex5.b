@@ -17,9 +17,6 @@ namespace ariel{
             //Constructor:
             Node(const std::string& str);
 
-            //Destructor:
-            // ~Node();
-
             //Functions:
             void addChild(const std::string& child);
             void printNode();
